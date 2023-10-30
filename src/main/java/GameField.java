@@ -26,6 +26,7 @@ public class GameField extends JPanel implements ActionListener {
     public GameField(){
         setBackground(Color.black); //цвет игрового поля
         loadImages();
+        initGame();
             }
 
     public void initGame(){
@@ -48,6 +49,19 @@ public class GameField extends JPanel implements ActionListener {
         apple = iia.getImage();
         ImageIcon iid = new ImageIcon("dot.png");
         dot = iid.getImage();
+    }
+
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (inGame){
+            g.drawImage(apple, appleX, appleY, this);
+            for (int i = 0; i <dots ; i++) {
+                g.drawImage(dot, x[i], y[i], this);
+
+            }
+        }
     }
 
     public void move (){
@@ -76,3 +90,4 @@ public class GameField extends JPanel implements ActionListener {
         repaint(); //перерисовываем поле
     }
 }
+
